@@ -1,44 +1,62 @@
 import React from 'react';
+import Axios from 'axios';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+
 import FoundedList from './FoundedList';
 import BookInformation from './BookInformation';
-
-import Book from './Classes/Book';
 
 class BookFinder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isbn: '', resultsFounded: [], bookInfo: {}};
+    this.state = {isbn: '', records: {}, items: [] };
   }
   onSubmitHandler = (event) => {
     event.preventDefault();
     const theIsbn = this.state.isbn;
     if (theIsbn) {
-      Book.lookForIsbn('someIsbn');
-      const bookInfo = Book.info;
-      this.setState({resultsFounded: [...Book.alternatives], bookInfo: {...bookInfo}});
+      const url = `http://localhost:33/BookFinder/isbn/${theIsbn}`;
+      Axios.get(url)
+      .then(response => 
+        this.setState({records: response.data.records, items: response.data.items})
+      )
+      .catch(error =>
+        {
+          console.dir(error);
+          console.log(error.message);
+
+          // si error.response ta definido es error de server
+          if (error.response)
+          {
+            console.log(error.response.status);
+          }
+          // caso contrario es error de red
+          console.log('do something bitch');  
+        }
+      );
     }
   }
   onChangeHandler = (event) => {
-    this.setState({isbn: event.target.value});
-    this.setState({resultsFounded: []});
-    this.setState({bookInfo: {}})
+    this.setState({isbn: event.target.value, items: [], records: {}})
   }
   render() {
     return (
-      <div>
-        <form onSubmit={this.onSubmitHandler}>
-        <p>Enter your isbn, and submit:</p>
-        <input
-          type='text'
-          onChange={this.onChangeHandler}
-        />
-        <input
-          type='submit'
-        />
-        </form>
-        <BookInformation information={{...this.state.bookInfo}} />
-        <FoundedList resultsFounded={[...this.state.resultsFounded]} />
-      </div>
+      <Container>
+        <Form onSubmit={this.onSubmitHandler}>
+          <Form.Row>
+            <Col md={6} className="my-1">
+              <Form.Control placeholder="ISBN" onChange={this.onChangeHandler}/>
+            </Col>
+            <Col md={3} xs="auto" className="my-1">
+              <Button type="submit">Submit</Button>
+            </Col>
+          </Form.Row>
+        </Form>
+        <BookInformation records={this.state.records}/>
+        <FoundedList items={this.state.items}/>
+      </Container>
     );
   }
 }

@@ -1,13 +1,19 @@
-import BookInformation from './BookInformation';
+import FreeResource from './FreeResource';
 
 function FoundedList (props){
-  if (props.resultsFounded.length) {
-    return props.resultsFounded.map( 
-      item => 
-        <BookInformation key={item.name + item.edition} information={item} />
-    );
+  let t = 0;
+  if (props.items){
+    const theItems = props.items;
+    if (theItems.length) {
+      return theItems.map( 
+        item =>       
+          <FreeResource key={++t} info={item} />
+      );
+    } else {
+      return <div style={{visibility: 'hidden'}}></div>
+    }
   } else {
-    return <div></div>
+    return <div style={{visibility: 'hidden'}}></div>
   }
 }
 
