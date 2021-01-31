@@ -5,8 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
-import FoundedList from './FoundedList';
-import BookInformation from './BookInformation';
+import BookInformation from '../BookInformationComponent/BookInformation';
 
 class BookFinder extends React.Component {
   constructor(props) {
@@ -17,13 +16,14 @@ class BookFinder extends React.Component {
     event.preventDefault();
     const theIsbn = this.state.isbn;
     if (theIsbn) {
-      const url = `http://localhost:33/BookFinder/isbn/${theIsbn}`;
+      const url = `http://192.168.1.82:33/BookFinder/isbn/${theIsbn}`;
       Axios.get(url)
       .then(response => 
         this.setState({records: response.data.records, items: response.data.items})
       )
       .catch(error =>
         {
+          alert(error.message);
           console.dir(error);
           console.log(error.message);
 
@@ -54,8 +54,8 @@ class BookFinder extends React.Component {
             </Col>
           </Form.Row>
         </Form>
-        <BookInformation records={this.state.records}/>
-        <FoundedList items={this.state.items}/>
+        <br></br>
+        <BookInformation records={this.state.records} items={this.state.items}/>
       </Container>
     );
   }

@@ -1,12 +1,10 @@
 import './App.css';
 import React from 'react';
-import Menu from './Menu';
-import BookFinder from './BookFinder'; 
+import BookFinder from './BookFinderComponent/BookFinder'; 
 
 function App() {
   return (
-    <div className='App'>
-      <Menu />
+    <div>
       <BookFinder />
     </div>
   );
