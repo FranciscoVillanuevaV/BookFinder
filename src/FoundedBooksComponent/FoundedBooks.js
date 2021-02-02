@@ -1,8 +1,8 @@
-import FreeResource from '../FreeResourceComponent/FreeResource';
+import FoundedBook from '../FoundedBook/FoundedBook';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function FoundedList (props){
+function FoundedBooks (props){
   let t = 0;
   if (props.items){
     const theItems = props.items;
@@ -12,7 +12,7 @@ function FoundedList (props){
           {theItems.map( 
             item =>
               <Col key={++t} sm={6} md={4}>
-                <FreeResource info={item} />
+                <FoundedBook info={item} />
               </Col>         
           )}       
         </Row>
@@ -25,4 +25,4 @@ function FoundedList (props){
   }
 }
 
-export default FoundedList;
+export default FoundedBooks;
