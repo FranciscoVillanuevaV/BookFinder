@@ -14,7 +14,7 @@ function FoundedBooks (props){
               <Col key={++t} sm={6} md={4}>
                 <FoundedBook info={item} />
               </Col>         
-          )}       
+          )}    
         </Row>
       );
     } else {

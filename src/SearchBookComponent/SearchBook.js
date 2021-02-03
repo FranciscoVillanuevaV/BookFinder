@@ -4,24 +4,26 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Spinner from 'react-bootstrap/Spinner';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import FoundedBooks from '../FoundedBooksComponent/FoundedBooks';
 
 class SearchBook extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {word: '', items: [] };
+    this.state = {word: '', items: [], hasMoreItems: false };
   }
-  onSubmitHandler = (event) => {
-    event.preventDefault();
+  request = (pageNumber) => {
     const theWord = this.state.word;
     if (theWord) {
-      const url = `https://localhost:5001/BookFinder/search/keyword/${theWord}?pageNumber=4`;
+      const url = `https://localhost:5001/BookFinder/search/keyword/${theWord}?pageNumber=${pageNumber}`;
       Axios.get(url)
       .then(response => 
-        {
-				  	//console.log(response.data.items);	
-            this.setState({items: response.data.items})
+        {	
+          let totItems = this.state.items;
+          totItems.push(...response.data.items)
+          this.setState({items: totItems, hasMoreItems: true})
         }
       )
       .catch(error =>
@@ -41,10 +43,24 @@ class SearchBook extends React.Component {
       );
     }
   }
+
+  onSubmitHandler = (event) => {
+    event.preventDefault();
+    this.request(1);
+  }
   onChangeHandler = (event) => {
-    this.setState({word: event.target.value, items: []})
+    this.setState({word: event.target.value, items: [], hasMoreItems: false})
+  }
+  loadItems = (page) => {
+    let _page = ++page;
+    console.log(_page)
+    this.request(_page);
   }
   render() {
+    const spin = 
+      <div key={'theLoad'} className="text-center">
+        <Spinner style={{width: "3rem", height: "3rem"}} animation="border" variant="primary" />
+      </div>;
     return (
       <Container>
         <Form onSubmit={this.onSubmitHandler}>
@@ -58,7 +74,13 @@ class SearchBook extends React.Component {
           </Form.Row>
         </Form>
         <br></br>
-        <FoundedBooks items={this.state.items}/>
+        <InfiniteScroll
+                pageStart={0}
+                loadMore={this.loadItems}
+                hasMore={this.state.hasMoreItems}
+                loader={spin}>
+          <FoundedBooks items={this.state.items}/>
+        </InfiniteScroll>
       </Container>
     );
   }
