@@ -8,7 +8,7 @@ function FoundedBooks (props){
     const theItems = props.items;
     if (theItems.length) {
       return( 
-        <Row>
+        <Row style={{marginTop: "30px"}}>
           {theItems.map( 
             item =>
               <Col key={++t} sm={6} md={4}>

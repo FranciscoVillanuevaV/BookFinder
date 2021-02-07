@@ -11,6 +11,7 @@ class BasicSearch extends FatherSearch {
 		this.state = {
 			word: '' 
 		};
+		this.myRefResult = React.createRef();
 	}
 
 	requestBooks = pageNumber => {
@@ -18,14 +19,23 @@ class BasicSearch extends FatherSearch {
 		if (theWord) {
 			const url = `https://localhost:5001/BookFinder/search/keyword/${theWord}?pageNumber=${pageNumber}`;
 			console.log(url);
-			this.ajaxBooksReq(url);
+			this.ajaxBooksReq(url, this.moveScroll);
 		}
+	}
+
+	moveScroll = () => {
+		const resultsPosition = this.myRefResult.current.getBoundingClientRect().top;
+		console.log(resultsPosition);
+		window.scroll({
+			top: resultsPosition - 70,
+			left: 0,
+			behavior: 'smooth'
+		});
 	}
 	
 	render() {
-		return (
+		return(
 			<>
-				<h3>Basic search</h3>
 				<Form onSubmit={this.onSubmitHandler}>
 					<Form.Row>
 						<Col md={6} className="my-1">
@@ -36,7 +46,9 @@ class BasicSearch extends FatherSearch {
 						</Col>
 					</Form.Row>
 				</Form>
-				{this.infiniteScroll(this.requestBooks)}
+				<div ref={this.myRefResult}>
+					{this.infiniteScroll(this.requestBooks)}
+				</div>
 			</>
 		)
 	}

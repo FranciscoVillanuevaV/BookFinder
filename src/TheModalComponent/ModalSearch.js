@@ -24,7 +24,6 @@ class ModalSearch extends React.Component {
               console.log('para por menor a 10');
               isMore = false;
             }
-            console.log(totItems);
             totItems.push(...response.data.items)
             this.setState({items: totItems, hasMoreItems: isMore, pageStart: ++pag})
           } else {

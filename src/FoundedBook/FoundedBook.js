@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import TheModal from '../TheModalComponent/TheModal';
+import './FoundedBook.css';
 
 function FoundedBook(props) {
   if (props.info.volumeInfo) {
@@ -41,16 +42,11 @@ function FoundedBook(props) {
 			}
 		}	
 		if (book) {
-      return ( 
-				<Card style={{minWidth: "100%", boxShadow: '0 .5rem 1rem rgba(0, 191, 255, .3)'}} className="p-3 mb-5 bg-white rounded">   
-				<svg style={{maxHeight: "200px", width: "100%"}} preserveAspectRatio="xMidYMid meet"  x="0" y="0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-					<image alt="main" style={{width: "100%", height: "100%"}} href={book.imageLinks ? book.imageLinks.thumbnail : urlNotImage}/>
+      return (
+				<Card className="p-3 mb-5 bg-white rounded">
+				<svg preserveAspectRatio="xMidYMid meet"  x="0" y="0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+					<image alt="main" href={book.imageLinks ? book.imageLinks.thumbnail : urlNotImage}/>
 				</svg>
-				{/* <svg style={{height: "auto", width: "100%"}} preserveAspectRatio="xMidYMid meet"  x="0" y="0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-					<image alt="main" style={{width: "100%", height: "100%"}} xlinkHref={book.imageLinks ? book.imageLinks.thumbnail : urlNotImage}/>
-				</svg> */}
-				{/* <img style={{objectFit: "contain", maxHeight: "600px"}} alt="mainBook" height="100%" width="100%" src={book.data.cover.large} /> */}
-				{/* <img style={{objectFit: "contain", maxHeight: "600px"}} alt="mainBook" height="100%" width="100%" src={book.imageLinks.thumbnail ? book.imageLinks.thumbnail : urlNotImage} /> */}
 				<Card.Header>{book.title ? book.title : notAvailable} ({book.publishedDate ? book.publishedDate : notAvailable})</Card.Header>
 					<Card.Body>
 						<ListGroup className="list-group-flush">

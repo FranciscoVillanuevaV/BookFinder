@@ -12,7 +12,7 @@ class FatherSearch extends React.Component {
     };
 	}
 
-	ajaxBooksReq = url => {
+	ajaxBooksReq = (url, moveScroll) => {
 		Axios.get(url)
       .then(response => 
         {
@@ -34,6 +34,11 @@ class FatherSearch extends React.Component {
           }
         }
       )
+      .then(() => {
+        if (this.state.pageStart === 1) {
+          moveScroll();
+        }
+      })
       .catch(error =>
         {
           alert(error.message);

@@ -1,0 +1,29 @@
+i.fas, i.fab {
+	color: blue;
+}
+
+.textEffect {
+	animation-name: textWeird;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes textWeird {
+  0%   {transform: scaleY(.9);}
+  25%  {transform: skewX(10deg);}
+  50%  {transform: scaleY(1);}
+  75%  {transform: skewX(-10deg);}
+  100% {transform: scaleY(.9);}
+}
+
+.jumbotron {
+	background: linear-gradient(45deg, #ffffff, #f0f2f4, #e9ecef, #e1e6ea);
+	background-size: 400% 400%;
+	animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

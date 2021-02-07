@@ -13,7 +13,7 @@ class InfiniteScrollBooks extends React.Component {
 	render() {
 		const spin = 
 		<div key={'theLoad'} className="text-center">
-				<Spinner style={{width: "3rem", height: "3rem"}} animation="border" variant="primary" />
+			<Spinner style={{width: "3rem", height: "3rem"}} animation="border" variant="primary" />
 		</div>;
 		return (
 			<InfiniteScroll
