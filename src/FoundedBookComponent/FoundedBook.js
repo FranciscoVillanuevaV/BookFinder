@@ -45,7 +45,7 @@ function FoundedBook(props) {
       return (
 				<Card className="p-3 mb-5 bg-white rounded">
 				<svg preserveAspectRatio="xMidYMid meet"  x="0" y="0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-					<image alt="main" href={book.imageLinks ? book.imageLinks.thumbnail : urlNotImage}/>
+					<image height="100%" width="100%" alt="main" href={book.imageLinks ? book.imageLinks.thumbnail : urlNotImage} src={book.imageLinks ? book.imageLinks.thumbnail : urlNotImage}/>
 				</svg>
 				<Card.Header>{book.title ? book.title : notAvailable} ({book.publishedDate ? book.publishedDate : notAvailable})</Card.Header>
 					<Card.Body>

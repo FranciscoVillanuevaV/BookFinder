@@ -1,9 +1,60 @@
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import './About.css';
 
+// import React from "react";
+// import { Animated, Text, View, StyleSheet, Easing } from "react-native";
+
+// class TheBounce extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {topPos: new Animated.Value(-10)}
+// 	}
+
+// 	move = () => {
+// 		Animated.sequence([
+// 			Animated.timing(this.state.topPos, {
+// 				toValue: 0,
+// 				duration: 2000,
+// 				easing: Easing.bounce
+// 			}),
+// 			Animated.timing(this.state.topPos, {
+// 				toValue: -10,
+// 				duration: 2000,
+// 			})
+// 		]).start(() => this.move())    
+//   };
+
+// 	componentDidMount() {
+// 		this.move();
+// 	}
+
+//   render() {
+//     return (
+//       <View style={styles.text}>
+//         <Animated.View
+//           style={[
+//             styles.text,
+//             {
+//               top: this.state.topPos, // Bind opacity to animated value
+//             }
+//           ]}
+//         >
+// 					<div className="bounceTwo">F</div>	
+//         </Animated.View>
+//       </View>
+//     );
+//   }
+// }
+
+// const styles = StyleSheet.create({
+//   text: {
+//     fontSize: 30,
+//   }
+// });
+
 const TextBounce = props => {
 	return (
-		<div key={props.delay} style={{float: 'left', marginRight: 10}}>
+		<div style={{float: 'left', marginRight: 10}}>
 			<h4 className="shadows" style={{animationDelay: `${props.delay}s`}}>{props.t}</h4>
 		</div>
 	)
@@ -12,19 +63,18 @@ const TextBounce = props => {
 const About = () => {
 	let delay = 1;
   return (
-		<>
 		<Jumbotron>
 			<div className="flex-container">
 				<div>
 					{
 						['B','y','F','r','a','n','c','i','s','c','o']
-						.map(x => <TextBounce t={x} delay={++delay/10}/>)
+						.map(x => <TextBounce key={delay + x} t={x} delay={++delay/10}/>)
 					}
 				</div>
 				<div>
 					{
 						['V','i','l','l','a','n','u','e','v','a']
-						.map(x => <TextBounce t={x} delay={++delay/10}/>)
+						.map(x => <TextBounce key={delay + x} t={x} delay={++delay/10}/>)
 					}
 				</div>
 			</div>
@@ -42,7 +92,6 @@ const About = () => {
 				</p>
 			</div>
 		</Jumbotron>
-		</>
 	)
 }
 
