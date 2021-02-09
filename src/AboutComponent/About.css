@@ -1,29 +1,84 @@
-i.fas, i.fab {
-	color: blue;
+i.fas,
+i.fab {
+    color: blue;
 }
 
 .textEffect {
-	animation-name: textWeird;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
+    animation-name: textWeird;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
 }
 
 @keyframes textWeird {
-  0%   {transform: scaleY(.9);}
-  25%  {transform: skewX(10deg);}
-  50%  {transform: scaleY(1);}
-  75%  {transform: skewX(-10deg);}
-  100% {transform: scaleY(.9);}
+    0% {
+        transform: scaleY(0.9);
+    }
+    25% {
+        transform: skewX(10deg);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+    75% {
+        transform: skewX(-10deg);
+    }
+    100% {
+        transform: scaleY(0.9);
+    }
 }
 
 .jumbotron {
-	background: linear-gradient(45deg, #ffffff, #f0f2f4, #e9ecef, #e1e6ea);
-	background-size: 400% 400%;
-	animation: gradientAnimation 10s ease infinite;
+    background: linear-gradient(45deg, #ffffff, #f0f2f4, #e9ecef, #e1e6ea);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
 }
 
 @keyframes gradientAnimation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.shadows {
+    top: 10px;
+    position: relative;
+    text-shadow: 3px 6px 3px rgba(0, 0, 0, 0.1);
+    animation: bounce 2s ease infinite alternate;
+}
+
+@keyframes bounce { 
+  0% {
+    top: -.5px
+  }
+  2% {
+    top: 0px
+  }
+  4% {
+    top: -.5px
+  }
+  6% {
+    top: 0px
+  }
+  50% {
+    text-shadow: 0px 1px .5px rgba(0, 0, 0, .4);
+  }
+  100% { 
+    top: -10px;
+    text-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  } 
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  width: auto;
 }

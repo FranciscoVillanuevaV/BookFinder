@@ -12,7 +12,7 @@ class ModalBooksByAuthor extends ModalSearch {
   }
 
   theRequest = pageNumber => {
-    const url = `https://localhost:5001/BookFinder/search/advanced?author=${this.props.authors}&pageNumber=${pageNumber}`;
+    const url = `http://192.168.1.82:33/BookFinder/search/advanced?author=${this.props.authors}&pageNumber=${pageNumber}`;
     console.log(url);
     this.ajaxBooksReq(url); 
   }
@@ -39,6 +39,7 @@ class ModalBooksByAuthor extends ModalSearch {
           </Modal.Header>
           <Modal.Body>
             <InfiniteScrollBooks 
+            isModal={true}
             pageStart={this.state.pageStart}
             hasMoreItems={this.state.hasMoreItems}
             items={this.state.items}

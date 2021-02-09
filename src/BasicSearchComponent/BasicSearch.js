@@ -17,7 +17,7 @@ class BasicSearch extends FatherSearch {
 	requestBooks = pageNumber => {
 		const theWord = this.state.word;
 		if (theWord) {
-			const url = `https://localhost:5001/BookFinder/search/keyword/${theWord}?pageNumber=${pageNumber}`;
+			const url = `http://192.168.1.82:33/BookFinder/search/keyword/${theWord}?pageNumber=${pageNumber}`;
 			console.log(url);
 			this.ajaxBooksReq(url, this.moveScroll);
 		}

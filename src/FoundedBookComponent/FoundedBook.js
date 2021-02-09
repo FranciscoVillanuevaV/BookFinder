@@ -67,7 +67,7 @@ function FoundedBook(props) {
 								Publisher: {book.publisher ? book.publisher : notAvailable}
 							</ListGroupItem>
 							{
-								book.authors ?
+								book.authors && !props.isModal ?
 								<ListGroupItem>
 									<TheModal authors={book.authors}/>
 								</ListGroupItem>

@@ -75,7 +75,8 @@ class FatherSearch extends React.Component {
   }
 
 	infiniteScroll = (reqFunc) => 
-		<InfiniteScrollBooks 
+		<InfiniteScrollBooks
+    isModal={false} 
 		pageStart={this.state.pageStart}
 		hasMoreItems={this.state.hasMoreItems}
 		items={this.state.items}

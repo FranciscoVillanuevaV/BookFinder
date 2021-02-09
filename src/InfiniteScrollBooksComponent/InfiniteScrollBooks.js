@@ -22,7 +22,7 @@ class InfiniteScrollBooks extends React.Component {
 			hasMore={this.props.hasMoreItems}
 			useWindow={this.props.useWindow}
 			loader={spin}>
-				<FoundedBooks items={this.props.items}/>
+				<FoundedBooks isModal={this.props.isModal} items={this.props.items}/>
 			</InfiniteScroll>
 		)
 	}

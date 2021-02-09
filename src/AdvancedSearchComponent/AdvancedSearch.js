@@ -23,7 +23,7 @@ class AdvancedSearch extends FatherSearch {
 		const isbn = this.state.isbn;
 		const publisher = this.state.publisher;
 		if (author || title || isbn || publisher) {
-			const url = `https://localhost:5001/BookFinder/search/advanced?pageNumber=${pageNumber}&isbn=${isbn}&author=${author}&publisher=${publisher}&title=${title}`;
+			const url = `http://192.168.1.82:33/BookFinder/search/advanced?pageNumber=${pageNumber}&isbn=${isbn}&author=${author}&publisher=${publisher}&title=${title}`;
 			console.log(url);
 			this.ajaxBooksReq(url, this.moveScroll);
 		}
@@ -42,68 +42,27 @@ class AdvancedSearch extends FatherSearch {
 		return (
 			<>
 				<Form onSubmit={this.onSubmitHandler}>
-					<Form.Group as={Row}>
-						<Col sm={4}>
+					<Row>
+						<Col sm={4} style={{marginTop: "20px"}}>
 							<Form.Control placeholder="Title" onChange={(event) => this.onChangeHandler(event, 'title')}/>
 						</Col>
-						<Col sm={4}>
+						<Col sm={4} style={{marginTop: "20px"}}>
 							<Form.Control placeholder="Author" onChange={(event) => this.onChangeHandler(event, 'author')}/>
 						</Col>
-					</Form.Group>
-					<Form.Group as={Row}>
-						<Col sm={4}>
+					</Row>
+					<Row>
+						<Col sm={4} style={{marginTop: "20px"}}>
 							<Form.Control placeholder="Publisher" onChange={(event) => this.onChangeHandler(event, 'publisher')}/>
 						</Col>
-						<Col sm={4}>
-							<Form.Control placeholder="ISBN" onChange={(event) => this.onChangeHandler(event, 'isbn')}/>
-						</Col>	
-					</Form.Group>
-					<Form.Group as={Row}>
-						<Col sm={2}>
-							<Button type="submit">Search</Button>
-						</Col>
-					</Form.Group>
-					{/* <Form.Group as={Row}>
-						<Form.Label column sm={2}>
-							Title
-						</Form.Label>
-						<Col sm={10}>
-							<Form.Control placeholder="Title" onChange={(event) => this.onChangeHandler(event, 'title')}/>
-						</Col>
-					</Form.Group>
-
-					<Form.Group as={Row}>
-						<Form.Label column sm={2}>
-							Author
-						</Form.Label>
-						<Col sm={10}>
-							<Form.Control placeholder="Author" onChange={(event) => this.onChangeHandler(event, 'author')}/>
-						</Col>
-					</Form.Group>
-					
-					<Form.Group as={Row}>
-						<Form.Label column sm={2}>
-							Publisher
-						</Form.Label>
-						<Col sm={10}>
-							<Form.Control placeholder="Publisher" onChange={(event) => this.onChangeHandler(event, 'publisher')}/>
-						</Col>
-					</Form.Group>
-
-					<Form.Group as={Row}>
-						<Form.Label column sm={2}>
-							ISBN
-						</Form.Label>
-						<Col sm={10}>
+						<Col sm={4} style={{marginTop: "20px"}}>
 							<Form.Control placeholder="ISBN" onChange={(event) => this.onChangeHandler(event, 'isbn')}/>
 						</Col>
-					</Form.Group>
-
-					<Form.Group as={Row}>
-						<Col sm={{ span: 10, offset: 2 }}>
+					</Row>
+					<Row>
+						<Col sm={2} style={{marginTop: "20px"}}>
 							<Button type="submit">Search</Button>
 						</Col>
-					</Form.Group> */}
+					</Row>
 				</Form>	
 				<div ref={this.myRefResult}>
 					{this.infiniteScroll(this.requestBooks)}

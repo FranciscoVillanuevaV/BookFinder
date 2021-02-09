@@ -1,4 +1,4 @@
-import FoundedBook from '../FoundedBook/FoundedBook';
+import FoundedBook from '../FoundedBookComponent/FoundedBook';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -11,8 +11,8 @@ function FoundedBooks (props){
         <Row style={{marginTop: "30px"}}>
           {theItems.map( 
             item =>
-              <Col key={++t} sm={6} md={4}>
-                <FoundedBook info={item} />
+              <Col key={++t} md={6} lg={4}>
+                <FoundedBook isModal={props.isModal} info={item} />
               </Col>         
           )}    
         </Row>
